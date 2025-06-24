@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.util.*;
 
 public class PropertyUtility {
+
     public Properties properties;
 
     public PropertyUtility(String testName) {
@@ -26,4 +27,12 @@ public class PropertyUtility {
         return properties.getProperty(key);
     }
 
+    public Map<String, Object> getAllProperties(){
+        Map<String, Object> allProperties = new HashMap<>();
+        for (String key: properties.stringPropertyNames()){
+            String value = getDataValue(key);
+            allProperties.put(key, value);
+        }
+        return allProperties;
+    }
 }

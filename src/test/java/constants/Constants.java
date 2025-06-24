@@ -2,6 +2,6 @@ package constants;
 
 public class Constants {
 
-    public static String HOMEPAGE = "MagazinulCuScule.ro";
-    public static String SUB_MENU = "Scule Diverse (19)";
+    public static String NO_NOTIFICATION = "Fără notificări";
+    public static String ALL_NOTIFICATION = "Toate comentariile";
 }

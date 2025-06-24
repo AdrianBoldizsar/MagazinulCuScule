@@ -6,7 +6,6 @@ import org.openqa.selenium.WebDriver;
 public abstract class BasePage {
 
     public WebDriver driver;
-
     public ElementMethods elementMethods;
 
     public BasePage(WebDriver driver) {
@@ -15,5 +14,4 @@ public abstract class BasePage {
     }
 
     public abstract void isPageLoaded();
-
 }
