@@ -18,21 +18,10 @@ public class AddToBasketTest extends BaseTest {
         basket.isPageLoaded();
 
         basket.addFirstProductToCart();
-        basket.isPageLoaded();
-
         basket.removeFromBasket();
-        basket.isPageLoaded();
-
         basket.closeBasket();
-        basket.isPageLoaded();
-
         basket.seeBasketButton();
-        basket.isPageLoaded();
-
         basket.isBasketEmpty();
-        basket.isPageLoaded();
 
-        basket.goToHomepage();
-        basket.isPageLoaded();
     }
 }

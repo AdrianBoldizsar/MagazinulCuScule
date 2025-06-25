@@ -10,13 +10,14 @@ import static extentUtility.ReportEventType.PASS_STEP;
 
 public class LoginPage extends BasePage{
 
-    private By loginLink = By.xpath("//span[text()='Cont utilizator']");
+    private By pageTitle = By.xpath("//h3[contains(text(), 'Puncte')]");
+    private By loginLink = By.xpath("//span[contains(text(), 'Cont utilizator')]");
     private By emailInput = By.id("edit-name");
     private By passwordInput = By.id("edit-pass");
     private By loginButton = By.id("edit-submit");
-    private By logOutButton = By.xpath("//span[text()='Ieşire']");
-    private By accountButton = By.xpath("//h3[text()='Puncte']");
-    private By errorMessage = By.xpath("//h2[text()='Mesaj de eroare']");
+    private By logOutButton = By.xpath("//span[contains(text(), 'Ieşire')]");
+    private By errorMessage = By.xpath("//h2[contains(text(), 'Mesaj de eroare')]");
+    private By loggedOut = By.xpath("//span[contains(text(), 'MagazinulCuScule')]");
 
     public LoginPage(WebDriver driver) {
         super(driver);
@@ -24,7 +25,10 @@ public class LoginPage extends BasePage{
 
     @Override
 
-    public void isPageLoaded() {}
+    public void isPageLoaded() {
+        logInfo(PASS_STEP,"Validate that LoginPage is loaded properly");
+        Assert.assertEquals(elementMethods.getTextFromElement(pageTitle),"Puncte","Page is not loaded properly");
+    }
 
     public void login(String email, String password) {
         logInfo(INFO_STEP,"User clicks Login button");
@@ -42,24 +46,19 @@ public class LoginPage extends BasePage{
 
     public void isUserLoggedIn() {
         logInfo(PASS_STEP,"Validates that the user can login with valid credentials");
-        Assert.assertTrue(driver.getPageSource().toLowerCase().contains("puncte"));
-        // eu vreau sa am si mesaj la assert!!!
-//        Assert.assertEquals(elementMethods.getElement(accountButton).getDomAttribute("h3"),
-//                "Puncte","Page is not loaded properly");
+        Assert.assertEquals(elementMethods.getTextFromElement(pageTitle),"Puncte","Page is not loaded properly");
     }
 
     public void errorMessage(){
         logInfo(PASS_STEP,"Validates that the user cannot login with invalid credentials");
-        Assert.assertTrue(driver.getPageSource().toLowerCase().contains("mesaj de eroare"));
-        //la fel ca mai sus, mesaj la assert!!!
-//        Assert.assertEquals(elementMethods.getElement(errorMessage).getDomAttribute("h2"),"Mesaj de eroare", "Câmpul Nume utilizator sau adresa e-mail este obligatoriu. " +
-//                "Câmpul Parola este obligatoriu.");
+        Assert.assertEquals(elementMethods.getTextFromElement(errorMessage), "Mesaj de eroare",
+                "Câmpul Nume utilizator sau adresa e-mail este obligatoriu. " + "Câmpul Parola este obligatoriu.");
     }
 
     public void logout(){
         logInfo(INFO_STEP, "User clicks the Log out button");
         elementMethods.clickElement(logOutButton);
         logInfo(PASS_STEP,"Validates that the user logged out successfully");
-        Assert.assertTrue(driver.getPageSource().toLowerCase().contains("cont utilizator"));
+        Assert.assertEquals(elementMethods.getTextFromElement(loggedOut),"MagazinulCuScule.ro","Page is not loaded properly");
     }
 }

@@ -15,11 +15,9 @@ public class InvalidLoginTest extends BaseTest {
         homePage.isPageLoaded();
 
         LoginPage login = new LoginPage(driver);
-        login.isPageLoaded();
-
         propertyUtility = new PropertyUtility("InvalidConfigData");
         login.login(propertyUtility.getDataValue("username"), propertyUtility.getDataValue("password"));
-        login.isPageLoaded();
+        login.errorMessage();
 
         login.errorMessage();
     }

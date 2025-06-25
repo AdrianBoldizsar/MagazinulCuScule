@@ -12,6 +12,7 @@ public class LogoutTest extends BaseTest {
         LoginPage logout = new LoginPage(driver);
         propertyUtility = new PropertyUtility("ConfigData");
         logout.login(propertyUtility.getDataValue("username"), propertyUtility.getDataValue("password"));
+        logout.isPageLoaded();
         logout.logout();
     }
 }
